@@ -1,6 +1,6 @@
 {
     "build_systems": [{
-        "cmd": ["g++ -o ./out/main ./src/main.cpp -Iinclude -lm -std=c++17 && ./out/main"],
+        "cmd": ["g++ -o ./out/main ./src/main.cpp -Iinclude -lncurses -lm -std=c++17 && ./out/main"],
         "name": "Debug",
         "shell": true,
         "working_dir": "$folder"

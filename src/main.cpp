@@ -1,26 +1,73 @@
 #include <iostream>
 #include <unistd.h>
 #include <chrono>
+#include <ncurses.h>
 
 #define WIDTH 80
 #define HEIGHT 24
+#define FPS 30
 
 using std::cout, std::endl, std::cin;
 
-#include "screen.cpp"
+#include "buildings.cpp"
+#include "bird.cpp"
 
 auto time_now = []{return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();};
 auto sleep_ms = [](int ms){usleep(ms*1000);};
 
 int main(){
 	
-	Screen screen{};
+	Buildings buildings{};
+	buildings.listBuildings();
+
+	bool gameRunning = true;
+
+	initscr();
+    noecho();
+    timeout(5);
+
+    unsigned int fps=0;
+    unsigned long int start = time_now();
+    
+    while (gameRunning) {
+
+    	// Keyboard input
+    	int ch = getch();
+        if (ch != ERR) {
+        	flushinp();
+        	if(ch == 27)
+        		gameRunning = false;
+
+        	move(5,0);
+        	// clrtoeol();
+        	printw("%d   ", ch);
+        }
+
+        // Rendering stuff
+       	buildings.drawBorders();
+
+    	move(0,0);
+    	printw("FPS: %d ", fps);
+
+    	refresh();
+    	// clear();
+
+    	// Fps stuff
+        sleep_ms(33);
+        fps=1000/(time_now()-start+1);
+        start = time_now();
+    }
+
+    endwin();
 
 	return 0;
 }
 
 
 /*
+classes-> screen, buildings, bird(intelligence)
+
+
 	cout << "\x1B[5;5H at place \x1B[m";
 	
 	cout << "\x1B[m  empty \x1B[m" << endl;
