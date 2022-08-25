@@ -7,7 +7,7 @@ max, 5 buildings
 
 class Buildings{
 private:
-	std::array<std::array<int, 2> ,5> builds = {{0,0}};
+	std::array<std::array<int, 3> ,5> builds = {{0,0}}; // pos, height, width
 
 public:
 	Buildings();

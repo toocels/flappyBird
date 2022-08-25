@@ -15,9 +15,31 @@ void Buildings::listBuildings() const {
 		cout << "At:" << build[0] << "  Height:" << build[1] << endl;
 }
 
-void Buildings::moveBuildings(){}
+void Buildings::moveBuildings(){
+	builds[0][0] = 50;
+	builds[0][1] = 7;
+	builds[0][2] = 4;
+}
 
-void Buildings::renderBuildings(){}
+void Buildings::renderBuildings() const{
+	for(auto build : builds){
+		int pos= build[0]; 
+		int height = build[1];
+		int width = build[2];
+	
+		for(int i=HEIGHT-2; i> -(height-HEIGHT+2); i--){ // render side walls
+			move( i, pos);
+			printw("o");
+			move( i, pos+width);
+			printw("o");
+		}
+
+		for(int i=pos; i<pos+width+1;i++){
+			move(-(height-HEIGHT+2), i);
+			printw("o");
+		}		
+	}
+}
 
 void Buildings::drawBorders(){
     for(int h=0; h < HEIGHT; h++){

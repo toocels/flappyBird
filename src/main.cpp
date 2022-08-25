@@ -22,12 +22,12 @@ int main(){
 
 	bool gameRunning = true;
 
-	initscr();
-    noecho();
-    timeout(5);
+	initscr();  // init screen
+    noecho();   // no echo keyboard
+    timeout(5); // ms wait for keyboard
 
     unsigned int fps=0;
-    unsigned long int start = time_now();
+    unsigned long int start = time_now();  //start of frame in epoch ms
     
     while (gameRunning) {
 
@@ -39,13 +39,17 @@ int main(){
         		gameRunning = false;
 
         	move(5,0);
-        	// clrtoeol();
+        	// clrtoeol(); // add keypress back yo input queue
         	printw("%d   ", ch);
         }
 
+        // Calculation stuff
+        buildings.moveBuildings();
+
         // Rendering stuff
        	buildings.drawBorders();
-
+       	buildings.renderBuildings();
+       	
     	move(0,0);
     	printw("FPS: %d ", fps);
 
