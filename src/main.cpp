@@ -58,7 +58,7 @@ int main(){
     	printw("FPS: %d ", fps);
 
     	refresh();
-    	// clear();
+    	clear();
 
     	// Fps stuff
         sleep_ms(33);

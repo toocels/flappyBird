@@ -3,11 +3,9 @@
 #include "buildings.h"
 
 
-
 Buildings::Buildings(){
 	cout << WIDTH << 'x' << HEIGHT << endl;
 	srand(time(0));
-	// cout << rand()%6 << endl;
 
 	builds[0][0] = 0;
 	builds[1][0] = 16;
@@ -25,7 +23,7 @@ void Buildings::listBuildings() const {
 
 void Buildings::moveBuildings(){
 	// check if need to gen new building
-	if(builds[0][0] < 0){
+	if(builds[0][0] < -builds[0][2]){
 		for(int i=0;i<4;i++){
 			builds[i] = builds[i+1];
 		}
@@ -52,41 +50,48 @@ void Buildings::renderBuildings(){
 		printw("%d",builds[i][2]);
 	}
 
-	for(auto build : old_builds){
-		int pos= build[0]; 
-		int height = build[1];
-		int width = build[2];
+	// for(const auto& build : old_builds){
+	// 	if(build[0] > WIDTH)
+	// 		continue;
 	
-		for(int i=HEIGHT-2; i> -(height-HEIGHT+2); i--){ // render side walls
-			move( i, pos);
-			printw(" ");
-			move( i, pos+width);
-			printw(" ");
-		}
+	// 	for(int i=HEIGHT-2; i> HEIGHT-build[1]-2; i--){ // render side walls
+	// 		if(build[0] < WIDTH && build[0] > 0){
+	// 			move( i, build[0]);
+	// 			printw(" ");	
+	// 		}
+	// 		if(build[0]+build[2] < WIDTH && build[0]+build[2] > 0){
+	// 			move( i, build[0]+build[2]);
+	// 			printw(" ");	
+	// 		}
+	// 	}
 
-		for(int i=pos; i<pos+width+1;i++){ // rendering roof
-			move(-(height-HEIGHT+2), i);
-			printw(" ");
-		}		
-	}
+	// 	for(int i=build[0]; i<build[0]+build[2]+1;i++){ // rendering roof
+	// 		if(i < 0 || i > WIDTH-1)
+	// 			continue;
+	// 		move(HEIGHT-build[1]-2, i);
+	// 		printw(" ");
+	// 	}		
+	// }
 
-	for(auto build : builds){
-		int pos = build[0]; 
-		int height = build[1];
-		int width = build[2];
-
-		if(pos < 0 || pos > WIDTH)
+	for(const auto& build : builds){
+		if(build[0] > WIDTH)
 			continue;
 	
-		for(int i=HEIGHT-2; i> -(height-HEIGHT+2); i--){ // render side walls
-			move( i, pos);
-			printw("o");
-			move( i, pos+width);
-			printw("o");
+		for(int i=HEIGHT-2; i> HEIGHT-build[1]-2; i--){ // render side walls
+			if(build[0] < WIDTH && build[0] > 0){
+				move( i, build[0]);
+				printw("o");	
+			}
+			if(build[0]+build[2] < WIDTH && build[0]+build[2] > 0){
+				move( i, build[0]+build[2]);
+				printw("o");	
+			}
 		}
 
-		for(int i=pos+1; i<pos+width;i++){ // rendering roof
-			move(-(height-HEIGHT+2), i);
+		for(int i=build[0]; i<build[0]+build[2]+1;i++){ // rendering roof
+			if(i < 0 || i > WIDTH-1)
+				continue;
+			move(HEIGHT-build[1]-2, i);
 			printw("o");
 		}		
 	}
