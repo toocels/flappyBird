@@ -8,6 +8,7 @@ max, 5 buildings
 class Buildings{
 private:
 	std::array<std::array<int, 3> ,5> builds = {{0,0}}; // pos, height, width
+	std::array<std::array<int, 3> ,5> old_builds = {{0,0}}; // pos, height, width
 
 public:
 	Buildings();
@@ -15,7 +16,7 @@ public:
 	
 	void listBuildings() const;
 	void moveBuildings();
-	void renderBuildings() const;
+	void renderBuildings();
 
 	static void drawBorders();
 };

@@ -28,6 +28,7 @@ int main(){
 
     unsigned int fps=0;
     unsigned long int start = time_now();  //start of frame in epoch ms
+    unsigned long int prev_frame = time_now();
     
     while (gameRunning) {
 
@@ -44,7 +45,10 @@ int main(){
         }
 
         // Calculation stuff
-        buildings.moveBuildings();
+        if(time_now() - prev_frame > 100){
+        	buildings.moveBuildings();
+        	prev_frame = time_now();
+        }
 
         // Rendering stuff
        	buildings.drawBorders();
