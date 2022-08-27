@@ -17,5 +17,6 @@ public:
 
 	void renderBird() const;
 	void runPhysics();
+	void inputHandler(int key);
 
 };

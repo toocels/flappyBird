@@ -40,9 +40,8 @@ int main(){
         	if(ch == 27)
         		gameRunning = false;
 
-        	move(5,0);
         	// clrtoeol(); // add keypress back yo input queue
-        	printw("%d   ", ch);
+        	bird.inputHandler(ch);
         }
 
         // Calculation stuff
