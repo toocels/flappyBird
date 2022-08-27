@@ -1,9 +1,5 @@
 #pragma once
 
-/*
-building stored as, bottom left part position, height
-max, 5 buildings
-*/
 
 class Buildings{
 private:

@@ -18,7 +18,8 @@ auto sleep_ms = [](int ms){usleep(ms*1000);};
 int main(){
 	
 	Buildings buildings{};
-	buildings.listBuildings();
+	Bird bird{};
+	// buildings.listBuildings();
 
 	bool gameRunning = true;
 
@@ -53,12 +54,13 @@ int main(){
         // Rendering stuff
        	buildings.drawBorders();
        	buildings.renderBuildings();
+       	bird.renderBird();
        	
     	move(0,0);
     	printw("FPS: %d ", fps);
 
     	refresh();
-    	clear();
+    	// clear();
 
     	// Fps stuff
         sleep_ms(33);
