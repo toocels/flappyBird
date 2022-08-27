@@ -15,18 +15,22 @@ void Bird::renderBird() const{
 }
 
 void Bird::runPhysics(){
+	prev_pos[0] = pos[0];
+	prev_pos[1] = pos[1];
+	
 	pos[0] += 1;
 
 	if(pos[0] >= HEIGHT)
 		pos[0] = 0;
+	if(jump){
+		jump=false;
+		pos[0]-=3;
+	}
 }
 
 void Bird::inputHandler(int key){
-	prev_pos[0] = pos[0];
-	prev_pos[1] = pos[1];
-
 	if(key==32)
-		pos[0]-=3;
+		jump=true;
 	// move(5,3);
 	// printw("%d  ", key);
 }
