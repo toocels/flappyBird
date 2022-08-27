@@ -49,6 +49,7 @@ int main(){
         if(time_now() - prev_frame > 100){
         	buildings.moveBuildings();
         	prev_frame = time_now();
+        	bird.runPhysics();
         }
 
         // Rendering stuff
