@@ -17,7 +17,7 @@ private:
 public:
 
 	void renderBird() const;
-	void runPhysics();
+	bool runPhysics(std::array<std::array<int, 3> ,5>);
 	void inputHandler(int key);
 
 };

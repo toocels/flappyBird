@@ -13,6 +13,10 @@ Buildings::Buildings(){
 
 Buildings::~Buildings(){}
 
+std::array<std::array<int, 3> ,5> Buildings::getBuildings(){
+	return builds;
+}
+
 void Buildings::listBuildings() const {
 	for(auto build : builds)
 		cout << "At:" << build[0] << "  Height:" << build[1] << endl;
@@ -33,19 +37,6 @@ void Buildings::moveBuildings(){
 }
 
 void Buildings::renderBuildings(){
-	/*for(int i=0;i<builds.size();i++){
-		move(3,2+i*5);
-		printw("   ");
-		printw("%d",builds[i][0]);
-
-		move(4,2+i*5);
-		printw("   ");
-		printw("%d",builds[i][1]);
-
-		move(5,2+i*5);
-		printw("   ");
-		printw("%d",builds[i][2]);
-	}*/
 
 	for(const auto& build : old_builds){
 		if(build[0] > WIDTH)

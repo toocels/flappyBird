@@ -45,10 +45,13 @@ int main(){
         }
 
         // Calculation stuff
-        if(time_now() - prev_frame > 100){
+        if(time_now() - prev_frame > 50){
         	buildings.moveBuildings();
         	prev_frame = time_now();
-        	bird.runPhysics();
+        	if(bird.runPhysics(buildings.getBuildings())){
+        		// if cllided
+        		gameRunning=false;
+        	}
         }
 
         // Rendering stuff
@@ -67,6 +70,11 @@ int main(){
         fps=1000/(time_now()-start+1);
         start = time_now();
     }
+
+	move(5,30);
+	printw("U LOST");
+	refresh();
+	sleep_ms(5000);
 
     endwin();
 
