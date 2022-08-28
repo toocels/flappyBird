@@ -20,12 +20,15 @@ void Bird::runPhysics(){
 	
 	pos[0] += 1;
 
-	if(pos[0] >= HEIGHT)
-		pos[0] = 0;
 	if(jump){
 		jump=false;
 		pos[0]-=3;
 	}
+
+	if(pos[0] >= HEIGHT-1) //hit floor
+		pos[0] = 0;
+	else if(pos[0] <= 1)
+		pos[0] = 1;
 }
 
 void Bird::inputHandler(int key){
