@@ -58,6 +58,8 @@ int main(){
        	buildings.drawBorders();
        	buildings.renderBuildings();
        	bird.renderBird();
+       	move(3,2);
+    	printw("Score: %d ", bird.score);
        	
     	move(0,0);
     	printw("FPS: %d ", fps);
@@ -72,9 +74,9 @@ int main(){
     }
 
 	move(5,30);
-	printw("U LOST");
+	printw("YOU LOST !");
 	refresh();
-	sleep_ms(5000);
+	sleep_ms(2000);
 
     endwin();
 

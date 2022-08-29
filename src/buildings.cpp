@@ -7,8 +7,9 @@ Buildings::Buildings(){
 	cout << WIDTH << 'x' << HEIGHT << endl;
 	srand(time(0));
 
-	for(int i=0; i < builds.size(); i++)
-		builds[i][0] = 16*i;
+	for(int i=0; i < builds.size(); i++){
+		builds[i][0] = 	 16*i;
+	}
 }
 
 Buildings::~Buildings(){}

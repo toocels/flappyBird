@@ -15,6 +15,7 @@ private:
 	bool jump=false;
 
 public:
+	int score = 0;
 
 	void renderBird() const;
 	bool runPhysics(std::array<std::array<int, 3> ,5>);

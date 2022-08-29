@@ -38,6 +38,9 @@ bool Bird::runPhysics(std::array<std::array<int, 3> ,5> builds){
 			move(5,10);
 			printw("No Collide");
 		}
+
+		if(pos[1] == build[0])
+			score+=1;
 	}
 
 	if(pos[0] >= HEIGHT-1) //hitting floor
