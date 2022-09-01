@@ -8,7 +8,9 @@ Buildings::Buildings(){
 	srand(time(0));
 
 	for(int i=0; i < builds.size(); i++){
-		builds[i][0] = 	 16*i;
+		builds[i][0] = 	80+16*i;
+		builds[i][1] = 	3+rand()%8;
+		builds[i][2] = 	3+rand()%8;
 	}
 }
 
