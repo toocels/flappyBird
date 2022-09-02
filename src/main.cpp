@@ -58,7 +58,7 @@ int main(){
        	buildings.renderBuildings();
        	bird.renderBird();
        	move(3,2);
-    	printw("Score: %d ", bird.score);
+    	printw("Score: %d ", bird.getScore());
        	
     	move(0,0);
     	printw("FPS: %d ", fps);

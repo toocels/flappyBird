@@ -23,7 +23,6 @@ void Bird::runPhysics(){
 	if(jump){
 		jump=false;
 		pos[0]-=3;
-		// system("echo -en \"\\007\"");
 	}
 
 	if(pos[0] >= HEIGHT-1) //hitting floor
@@ -51,4 +50,8 @@ bool Bird::checkCollision(std::array<std::array<int, 3> ,5> builds){
 void Bird::inputHandler(int key){
 	if(key==32)
 		jump=true;
+}
+
+int Bird::getScore(){
+	return score;
 }
