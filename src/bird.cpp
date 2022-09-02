@@ -38,9 +38,12 @@ bool Bird::checkCollision(std::array<std::array<int, 3> ,5> builds){
 			if(pos[0] > HEIGHT-build[1]-4)
 				return true;
 
-	for(auto build:builds) // if no collision add score
-		if(pos[0] == build[0]+build[2])
+	for(auto build:builds){ // if no collision add score
+		if(pos[0] == build[0]+build[2]){
 			score+=1;
+			system("echo -en \"\\007\"");
+		}
+	}
 
 	return false;
 }
