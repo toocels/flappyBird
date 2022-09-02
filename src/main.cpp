@@ -19,20 +19,17 @@ int main(){
 	
 	Buildings buildings{};
 	Bird bird{};
-	// buildings.listBuildings();
-
-	bool gameRunning = true;
 
 	initscr();  // init screen
     noecho();   // no echo keyboard
     timeout(5); // ms wait for keyboard
 
+    bool gameRunning = true;
     unsigned int fps=0;
     unsigned long int start = time_now();  //start of frame in epoch ms
     unsigned long int prev_frame = time_now();
     
     while (gameRunning) {
-
     	// Keyboard input
     	int ch = getch();
         if (ch != ERR) {
@@ -40,7 +37,10 @@ int main(){
         	if(ch == 27)
         		gameRunning = false;
 
-        	// clrtoeol(); // add keypress back yo input queue
+        	// move(5,5);
+        	// printw("%d",ch);
+
+        	// clrtoeol(); // add keypress back to input queue
         	bird.inputHandler(ch);
         }
 
@@ -49,8 +49,26 @@ int main(){
         	buildings.moveBuildings();
         	prev_frame = time_now();
         	bird.runPhysics();
-        	if(bird.checkCollision(buildings.getBuildings()))
-        		gameRunning=false;
+        	if(bird.checkCollision(buildings.getBuildings())){
+        		move(5,10);
+    			printw("Press q to continue.");
+    			move(6,10);
+    			printw("Press p to quit.");
+        		while(true){
+        			int ch = getch();
+        			flushinp();
+        			if(ch == 113){
+        				//bird set score =0
+        				//reset bird and building
+        				break;
+        			}
+        			else if(ch == 112){
+        				gameRunning = false;
+        				clear();
+        				break;
+        			}
+        		}
+        	}
         }
 
         // Rendering stuff
@@ -72,12 +90,15 @@ int main(){
         start = time_now();
     }
 
+    clear();
 	move(5,30);
-	printw("YOU LOST !");
+	printw(":Game Over:");
 	refresh();
-	sleep_ms(2000);
+	sleep_ms(1000);
 
     endwin();
+
+    cout << "Game over, your score: " << bird.getScore() << endl;
 
 	return 0;
 }
