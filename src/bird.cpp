@@ -14,7 +14,7 @@ void Bird::renderBird() const{
 	printw("^^");
 }
 
-bool Bird::runPhysics(std::array<std::array<int, 3> ,5> builds){
+void Bird::runPhysics(){
 	prev_pos[0] = pos[0];
 	prev_pos[1] = pos[1];
 	
@@ -26,27 +26,21 @@ bool Bird::runPhysics(std::array<std::array<int, 3> ,5> builds){
 		// system("echo -en \"\\007\"");
 	}
 
-	for(auto build:builds){
-		if(pos[1] > build[0] && pos[1] < build[0]+build[2]){
-			if(pos[0] > HEIGHT-build[1]-4){
-				move(5,10);
-				printw("Collide");
-				return true;
-			}
-		}
-		else{
-			move(5,10);
-			printw("No Collide");
-		}
-
-		if(pos[1] == build[0])
-			score+=1;
-	}
-
 	if(pos[0] >= HEIGHT-1) //hitting floor
 		pos[0] = 0;
 	else if(pos[0] <= 1)
 		pos[0] = 1;
+}
+
+bool Bird::checkCollision(std::array<std::array<int, 3> ,5> builds){
+	for(auto build:builds)
+		if(pos[1] > build[0] && pos[1] < build[0]+build[2])
+			if(pos[0] > HEIGHT-build[1]-4)
+				return true;
+
+	for(auto build:builds) // if no collision add score
+		if(pos[0] == build[0]+build[2])
+			score+=1;
 
 	return false;
 }

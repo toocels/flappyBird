@@ -18,7 +18,8 @@ public:
 	int score = 0;
 
 	void renderBird() const;
-	bool runPhysics(std::array<std::array<int, 3> ,5>);
+	void runPhysics();
+	bool checkCollision(std::array<std::array<int, 3> ,5> builds);
 	void inputHandler(int key);
 
 };

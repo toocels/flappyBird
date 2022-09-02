@@ -48,10 +48,9 @@ int main(){
         if(time_now() - prev_frame > 50){
         	buildings.moveBuildings();
         	prev_frame = time_now();
-        	if(bird.runPhysics(buildings.getBuildings())){
-        		// if cllided
+        	bird.runPhysics();
+        	if(bird.checkCollision(buildings.getBuildings()))
         		gameRunning=false;
-        	}
         }
 
         // Rendering stuff
