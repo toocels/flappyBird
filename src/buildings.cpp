@@ -20,6 +20,18 @@ std::array<std::array<int, 3> ,5> Buildings::getBuildings(){
 	return builds;
 }
 
+void Buildings::reset(){
+	for(int i=0; i < builds.size(); i++){
+		builds[i][0] = 	40+16*i;
+		builds[i][1] = 	3+rand()%8;
+		builds[i][2] = 	3+rand()%8;
+
+		old_builds[i][0] = 	40+16*i;
+		old_builds[i][1] = 	3+rand()%8;
+		old_builds[i][2] = 	3+rand()%8;		
+	}
+}
+
 void Buildings::listBuildings() const {
 	for(auto build : builds)
 		cout << "At:" << build[0] << "  Height:" << build[1] << endl;

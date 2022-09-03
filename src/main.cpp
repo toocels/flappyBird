@@ -58,9 +58,9 @@ int main(){
         			int ch = getch();
         			flushinp();
         			if(ch == 113){
-        				//bird set score =0
-        				//reset bird and building
+        				buildings.reset();
         				bird.reset();
+        				clear();
         				break;
         			}
         			else if(ch == 112){

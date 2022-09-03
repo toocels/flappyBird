@@ -13,6 +13,7 @@ public:
 	void listBuildings() const;
 	void moveBuildings();
 	void renderBuildings();
+	void reset();
 	std::array<std::array<int, 3> ,5> getBuildings();
 
 	static void drawBorders();
