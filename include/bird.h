@@ -21,4 +21,5 @@ public:
 	bool checkCollision(std::array<std::array<int, 3> ,5> builds);
 	void inputHandler(int key);
 	int getScore();
+	void reset();
 };

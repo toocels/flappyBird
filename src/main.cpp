@@ -60,6 +60,7 @@ int main(){
         			if(ch == 113){
         				//bird set score =0
         				//reset bird and building
+        				bird.reset();
         				break;
         			}
         			else if(ch == 112){

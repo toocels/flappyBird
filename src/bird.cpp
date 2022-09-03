@@ -14,6 +14,15 @@ void Bird::renderBird() const{
 	printw("^^");
 }
 
+void Bird::reset(){
+	pos[0] = 6;
+	pos[1] = 8;
+	prev_pos[0] = 6;
+	prev_pos[1] = 8;
+	jump=false;
+	score = 0;
+}
+
 void Bird::runPhysics(){
 	prev_pos[0] = pos[0];
 	prev_pos[1] = pos[1];
