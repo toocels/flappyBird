@@ -21,87 +21,87 @@ int main(){
 	Bird bird{};
 
 	initscr();  // init screen
-    noecho();   // no echo keyboard
-    timeout(5); // ms wait for keyboard
+	noecho();   // no echo keyboard
+	timeout(5); // ms wait for keyboard
 
-    bool gameRunning = true;
-    unsigned int fps=0;
-    unsigned long int start = time_now();  //start of frame in epoch ms
-    unsigned long int prev_frame = time_now();
+	bool gameRunning = true;
+	unsigned int fps=0;
+	unsigned long int start = time_now();  //start of frame in epoch ms
+	unsigned long int prev_frame = time_now();
 
-    while (gameRunning) {
-    	// Keyboard input
-    	int ch = getch();
-        if (ch != ERR) {
-        	flushinp();
-        	if(ch == 27)
-        		gameRunning = false;
+	while (gameRunning) {
+		// Keyboard input
+		int ch = getch();
+		if (ch != ERR) {
+			flushinp();
+			if(ch == 27)
+				gameRunning = false;
 
-        	// move(5,5);
-        	// printw("%d",ch);
+			// move(5,5);
+			// printw("%d",ch);
 
-        	// clrtoeol(); // add keypress back to input queue
-        	bird.inputHandler(ch);
-        }
+			// clrtoeol(); // add keypress back to input queue
+			bird.inputHandler(ch);
+		}
 
-        // Calculation stuff
-        if(time_now() - prev_frame > 50){
-        	prev_frame = time_now();
-        	buildings.moveBuildings();
-    
-        	if(bird.checkCollision(buildings.getBuildings())){
-        		move(5,10);
-    			printw("Press q to continue.");
-    			move(6,10);
-    			printw("Press p to quit.");
-        		while(true){
-        			int ch = getch();
-        			flushinp();
-        			if(ch == 113){
-        				buildings.reset();
-        				bird.reset();
-        				clear();
-        				break;
-        			}
-        			else if(ch == 112 || ch == 27){
-        				gameRunning = false;
-        				clear();
-        				break;
-        			}
-        		}
-        	}
-        	bird.runPhysics();
-    
-        	move(3,2);
-	    	printw("Score: %i ", bird.getScore());
-        }
+		// Calculation stuff
+		if(time_now() - prev_frame > 50){
+			prev_frame = time_now();
+			buildings.moveBuildings();
+	
+			if(bird.checkCollision(buildings)){
+				move(5,10);
+				printw("Press q to continue.");
+				move(6,10);
+				printw("Press p to quit.");
+				while(true){
+					int ch = getch();
+					flushinp();
+					if(ch == 113){
+						buildings.reset();
+						bird.reset();
+						clear();
+						break;
+					}
+					else if(ch == 112 || ch == 27){
+						gameRunning = false;
+						clear();
+						break;
+					}
+				}
+			}
+			bird.runPhysics();
+	
+			move(3,2);
+			printw("Score: %i ", bird.getScore());
+		}
 
-        // Rendering stuff
-       	buildings.drawBorders();
-       	buildings.renderBuildings();
-       	bird.renderBird();
-       	
-    	move(0,0);
-    	printw("FPS: %d ", fps);
+		// Rendering stuff
+	   	buildings.drawBorders();
+	   	buildings.renderBuildings();
+	   	bird.renderBird();
+	   	
+		move(0,0);
+		printw("FPS: %d ", fps);
 
-    	refresh();
-    	// clear();
+		refresh();
+		// clear();
 
-    	// Fps stuff
-        sleep_ms(33);
-        fps=1000/(time_now()-start+1);
-        start = time_now();
-    }
+		// Fps stuff
+		sleep_ms(33);
+		fps=1000/(time_now()-start+1);
+		start = time_now();
+	}
 
-    clear();
+	clear();
 	move(5,30);
 	printw(":Game Over:");
 	refresh();
 	sleep_ms(1000);
 
-    endwin();
+	endwin();
 
-    cout << "Game over, your score: " << bird.getScore() << endl;
+	cout << "Game over, your score: " << bird.getScore() << endl;
 
 	return 0;
 }

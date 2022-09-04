@@ -40,16 +40,16 @@ void Bird::runPhysics(){
 		pos[0] = 1;
 }
 
-bool Bird::checkCollision(std::array<std::array<int, 3> ,5> builds){
-	for(auto build:builds)
-		if(pos[1] > build[0] && pos[1] < build[0]+build[2])
-			if(pos[0] > HEIGHT-build[1]-4)
+bool Bird::checkCollision(Buildings &buildings){
+	for(int build=0; build<5; build++)
+		if(pos[1] > buildings.getBuilds(build,0) && pos[1] < buildings.getBuilds(build,0)+buildings.getBuilds(build,2))
+			if(pos[0] > HEIGHT-buildings.getBuilds(build,1)-4)
 				return true;
 
-	for(auto build:builds){ // if no collision add score
-		if(pos[0] == build[0]+build[2]){
+	for(int build=0; build<5; build++){
+		if(pos[0] == buildings.getBuilds(build,0)+buildings.getBuilds(build,2)){
 			score+=1;
-			system("echo -en \"\\007\"");
+			// system("echo -en \"\\007\"");
 		}
 	}
 

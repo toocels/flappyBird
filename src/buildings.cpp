@@ -116,3 +116,7 @@ void Buildings::drawBorders(){
 		printw("I");
     }
 }
+
+int Buildings::getBuilds(int build, int factor){
+	return builds[build][factor];
+}

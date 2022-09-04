@@ -14,6 +14,7 @@ public:
 	void moveBuildings();
 	void renderBuildings();
 	void reset();
+	int getBuilds(int build, int factor);
 	std::array<std::array<int, 3> ,5> getBuildings();
 
 	static void drawBorders();

@@ -18,7 +18,7 @@ private:
 public:
 	void renderBird() const;
 	void runPhysics();
-	bool checkCollision(std::array<std::array<int, 3> ,5> builds);
+	bool checkCollision(Buildings &buildings);
 	void inputHandler(int key);
 	int getScore();
 	void reset();
