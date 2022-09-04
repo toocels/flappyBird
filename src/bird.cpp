@@ -47,9 +47,9 @@ bool Bird::checkCollision(Buildings &buildings){
 				return true;
 
 	for(int build=0; build<5; build++){
-		if(pos[0] == buildings.getBuilds(build,0)+buildings.getBuilds(build,2)){
+		if((int)pos[0] == buildings.getBuilds(build,0)+buildings.getBuilds(build,2)){
 			score+=1;
-			// system("echo -en \"\\007\"");
+			beep();
 		}
 	}
 
