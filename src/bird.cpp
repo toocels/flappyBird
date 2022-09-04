@@ -27,7 +27,7 @@ void Bird::runPhysics(){
 	prev_pos[0] = pos[0];
 	prev_pos[1] = pos[1];
 	
-	pos[0] += 1;
+	pos[0] += 0.3;
 
 	if(jump){
 		jump=false;

@@ -10,8 +10,8 @@
 
 class Bird{ 
 private:
-	int pos[2] = {6,8};
-	int prev_pos[2] = {6,8};
+	float pos[2] = {6,8};
+	float prev_pos[2] = {6,8};
 	bool jump=false;
 	int score = 0;
 

@@ -73,7 +73,7 @@ int main(){
         	bird.runPhysics();
     
         	move(3,2);
-	    	printw("Score: %d ", bird.getScore());
+	    	printw("Score: %i ", bird.getScore());
         }
 
         // Rendering stuff
