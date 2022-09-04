@@ -28,7 +28,7 @@ int main(){
     unsigned int fps=0;
     unsigned long int start = time_now();  //start of frame in epoch ms
     unsigned long int prev_frame = time_now();
-    
+
     while (gameRunning) {
     	// Keyboard input
     	int ch = getch();
@@ -46,9 +46,9 @@ int main(){
 
         // Calculation stuff
         if(time_now() - prev_frame > 50){
-        	buildings.moveBuildings();
         	prev_frame = time_now();
-        	bird.runPhysics();
+        	buildings.moveBuildings();
+    
         	if(bird.checkCollision(buildings.getBuildings())){
         		move(5,10);
     			printw("Press q to continue.");
@@ -63,21 +63,23 @@ int main(){
         				clear();
         				break;
         			}
-        			else if(ch == 112){
+        			else if(ch == 112 || ch == 27){
         				gameRunning = false;
         				clear();
         				break;
         			}
         		}
         	}
+        	bird.runPhysics();
+    
+        	move(3,2);
+	    	printw("Score: %d ", bird.getScore());
         }
 
         // Rendering stuff
        	buildings.drawBorders();
        	buildings.renderBuildings();
        	bird.renderBird();
-       	move(3,2);
-    	printw("Score: %d ", bird.getScore());
        	
     	move(0,0);
     	printw("FPS: %d ", fps);
@@ -103,7 +105,6 @@ int main(){
 
 	return 0;
 }
-
 
 /*
 classes-> screen, buildings, bird(intelligence)
